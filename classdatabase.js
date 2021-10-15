@@ -44,7 +44,7 @@ for (let i = 1; i <= 200; i++)
     let media_query = `INSERT INTO media(media_url) VALUES(`;
     let likes_query = `INSERT INTO likes(post_id, num_likes, visible) VALUES(${i},`;
     let users_query = `INSERT INTO users(username, password, email, vis_likes) VALUES('${username}','${pass}',`;
-    let post_rev_query = `INSERT INTO post_revenue(post_id, ad_revenue, times_link_clicked, cost_of_promotion, sponsor_money) VALUES (${i},${(i%20) + 1},`;
+    let post_rev_query = `INSERT INTO post_revenue(post_id, money_recipient, ad_revenue, times_link_clicked, cost_of_promotion, sponsor_money) VALUES (${i},${(i%20) + 1},`;
 
     //CONSTRUCTING QUERY
     if(randomNull1){
@@ -103,7 +103,7 @@ for (let i = 1; i <= 200; i++)
         likes_query = likes_query + `${likes},NULL);`;
     }
     
-    fs.appendFile(file_name, posts_query + '\n\n', (err) => {
+    fs.appendFile(file_name, post_rev_query + '\n\n', (err) => {
         if(err)
             console.error(err);
     })
