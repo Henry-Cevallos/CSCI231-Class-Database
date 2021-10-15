@@ -7,7 +7,7 @@ import * as fs from 'fs';
 const bio_arr = ['Friendship is the marriage of the soul, and this marriage is liable to divorce.', 'An optimist is a person who sees a green light everywhere, while the pessimist sees only the red spotlight... The truly wise person is color-blind.', 'A goal without a plan is just a wish.', 'Those who dare to fail miserably can achieve greatly.', 'A man should look for what is, and not for what he thinks should be.', 'My best friend is the one who brings out the best in me.', 'Be slow to fall into friendship; but when thou art in, continue firm and constant.', 'Wherever a man turns he can find someone who needs him.', 'Difficulties increase the nearer we get to the goal.', 'Instead of saying that man is the creature of circumstance, it would be nearer the mark to say that man is the architect of circumstance.', 'To make no mistakes is not in the power of man; but from their errors and mistakes the wise and good learn wisdom for the future.', 'It is common sense to take a method and try it. If it fails, admit it frankly and try another. But above all, try something.', 'If you correct your mind, the rest of your life will fall into place.', 'All our knowledge begins with the senses, proceeds then to the understanding, and ends with reason. There is nothing higher than reason.', 'Your work is to discover your world and then with all your heart give yourself to it.', 'Study the past, if you would divine the future.', 'Your big opportunity may be right where you are now.', 'Character is like a tree and reputation like a shadow. The shadow is what we think of it; the tree is the real thing.', 'Interestingly, according to modern astronomers, space is finite. This is a very comforting thought-- particularly for people who can never remember where they have left things.', 'It requires wisdom to understand wisdom: the music is nothing if the audience is deaf.'];
 const users = apiResults().results;
 
-const file_name = 'something.txt';
+const file_name = 'posts.txt';
 
 fs.open(file_name, 'w', (err) => {
     console.log(err);
@@ -65,7 +65,7 @@ for (let i = 1; i <= 200; i++)
 
         profile_query = profile_query + `'${bio}','${name}');`;
 
-        posts_query = posts_query + `'${geotag}','${media}', now());`;
+        posts_query = posts_query + `'${geotag}','${i}', now());`;
 
         users_query = users_query + `${visible});`; 
     } else{
@@ -74,7 +74,7 @@ for (let i = 1; i <= 200; i++)
 
         profile_query = profile_query + `NULL,'${name}');`;
 
-        posts_query = posts_query + `NULL,'${media}', now());`;
+        posts_query = posts_query + `NULL,'${i}', now());`;
 
         users_query = users_query + `NULL);`; 
     }
@@ -103,7 +103,7 @@ for (let i = 1; i <= 200; i++)
         likes_query = likes_query + `${likes},NULL);`;
     }
     
-    fs.appendFile(file_name, post_rev_query + '\n\n', (err) => {
+    fs.appendFile(file_name, posts_query + '\n\n', (err) => {
         if(err)
             console.error(err);
     })
